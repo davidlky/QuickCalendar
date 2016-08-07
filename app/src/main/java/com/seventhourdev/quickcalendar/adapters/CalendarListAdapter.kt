@@ -30,7 +30,13 @@ import java.util.ArrayList
  */
 class CalendarListAdapter(private val list: ArrayList<Event>, private val context: Context) : BaseAdapter() {
 
-    private val times = arrayOf("1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM", "12AM")
+    private val times = Array(24, {
+        if (it < 12) {
+            "" + (it + 1) + "AM"
+        } else {
+            "" + (it - 11) + "PM"
+        }
+    })
     internal var dragged = false
     private val mInflater: LayoutInflater
 
@@ -55,10 +61,11 @@ class CalendarListAdapter(private val list: ArrayList<Event>, private val contex
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var convertView = convertView
-        if (convertView == null) {
+        if(convertView==null)
             convertView = mInflater.inflate(R.layout.list_item_calendar, null)
-        }
-        (convertView!!.findViewById(R.id.time) as TextView).text = times[position]
+
+        var timeTextView = convertView!!.findViewById(R.id.time) as TextView
+        timeTextView.text = times[position]
 
         convertView.findViewById(R.id.event).setOnTouchListener { view, motionEvent ->
             if (motionEvent.action == MotionEvent.ACTION_DOWN) {
@@ -78,17 +85,14 @@ class CalendarListAdapter(private val list: ArrayList<Event>, private val contex
                 DragEvent.ACTION_DRAG_ENTERED -> {
                     if (v.background != null && (v.background as ColorDrawable).color == Color.BLUE) {
                         if (Math.abs(position - START_POS) < Math.abs(ENDING_POS - START_POS)) {
+                            var parent = (v.parent.parent as ListView)
                             if (START_POS == position) {
-                                ((v.parent.parent as ListView).getChildAt(position + 1) as LinearLayout).getChildAt(1).setBackgroundColor(Color.WHITE)
-                                ((v.parent.parent as ListView).getChildAt(position - 1) as LinearLayout).getChildAt(1).setBackgroundColor(Color.WHITE)
-                            } else {
-                                //                                    v.setBackgroundColor(Color.WHITE);
-                                if (position - START_POS > 0) {
-                                    ((v.parent.parent as ListView).getChildAt(position + 1) as LinearLayout).getChildAt(1).setBackgroundColor(Color.WHITE)
-                                } else if (position - START_POS < 0) {
-                                    ((v.parent.parent as ListView).getChildAt(position - 1) as LinearLayout).getChildAt(1).setBackgroundColor(Color.WHITE)
-                                } else {
-                                }
+                                (parent.getChildAt(position + 1) as LinearLayout).getChildAt(1).setBackgroundColor(Color.WHITE)
+                                (parent.getChildAt(position - 1) as LinearLayout).getChildAt(1).setBackgroundColor(Color.WHITE)
+                            } else if (position - START_POS > 0) {
+                                    (parent.getChildAt(position + 1) as LinearLayout).getChildAt(1).setBackgroundColor(Color.WHITE)
+                            } else if (position - START_POS < 0) {
+                                (parent.getChildAt(position - 1) as LinearLayout).getChildAt(1).setBackgroundColor(Color.WHITE)
                             }
                         }
                     } else {
@@ -96,21 +100,13 @@ class CalendarListAdapter(private val list: ArrayList<Event>, private val contex
                     }
                     ENDING_POS = position
                     if (position > START_POS) {
-                        Log.d("asdf", ""+position)
+                        Log.d("asdf", "" + position)
                     } else {
-                        Log.d("asdf", "--"+position)
+                        Log.d("asdf", "--" + position)
                     }
                 }
 
                 DragEvent.ACTION_DRAG_EXITED -> {
-                    if (Math.abs(position - START_POS) < Math.abs(ENDING_POS - START_POS)) {
-                        if (START_POS == position) {
-
-                        } else {
-                            v.setBackgroundColor(Color.WHITE)
-                        }
-                    }
-                    //                        ENDING_POS = position;
                     Log.d("asdf", "exit--" + position)
                 }
                 DragEvent.ACTION_DROP -> {

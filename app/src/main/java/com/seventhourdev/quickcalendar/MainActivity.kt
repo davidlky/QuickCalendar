@@ -18,7 +18,7 @@ import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
-    var eventList: ArrayList<Event> = null
+    var eventList: ArrayList<Event> = ArrayList<Event>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +27,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpListView() {
-        eventList = ArrayList<Event>()
-
         val listView = findViewById(R.id.listView) as ListView
         val listAdapter = CalendarListAdapter(eventList, this)
-        listView!!.adapter = listAdapter
+        listView.adapter = listAdapter
     }
 }
