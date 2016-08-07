@@ -1,34 +1,23 @@
 package com.seventhourdev.quickcalendar.adapters
 
 import android.content.ClipData
-import android.content.ClipDescription
 import android.content.Context
 import android.graphics.Color
-import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
-import android.text.Layout
 import android.util.Log
-import android.view.DragEvent
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
-import android.widget.AbsListView
+import android.view.*
 import android.widget.BaseAdapter
 import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.TextView
-import android.widget.Toast
-
 import com.seventhourdev.quickcalendar.R
 import com.seventhourdev.quickcalendar.models.Event
-
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by david on 8/5/2016.
  */
-class CalendarListAdapter(private val list: ArrayList<Event>, private val context: Context) : BaseAdapter() {
+class CalendarListAdapter(private val list: ArrayList<Event>, context: Context) : BaseAdapter() {
 
     private val times = Array(24, {
         if (it < 12) {
@@ -60,11 +49,9 @@ class CalendarListAdapter(private val list: ArrayList<Event>, private val contex
     var ENDING_POS = 0
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var convertView = convertView
-        if(convertView==null)
-            convertView = mInflater.inflate(R.layout.list_item_calendar, null)
+        val convertView: View = convertView ?: mInflater.inflate(R.layout.list_item_calendar, null)
 
-        var timeTextView = convertView!!.findViewById(R.id.time) as TextView
+        val timeTextView = convertView.findViewById(R.id.time) as TextView
         timeTextView.text = times[position]
 
         convertView.findViewById(R.id.event).setOnTouchListener { view, motionEvent ->
@@ -85,14 +72,14 @@ class CalendarListAdapter(private val list: ArrayList<Event>, private val contex
                 DragEvent.ACTION_DRAG_ENTERED -> {
                     if (v.background != null && (v.background as ColorDrawable).color == Color.BLUE) {
                         if (Math.abs(position - START_POS) < Math.abs(ENDING_POS - START_POS)) {
-                            var parent = (v.parent.parent as ListView)
+                            val parentListView = (v.parent.parent as ListView)
                             if (START_POS == position) {
-                                (parent.getChildAt(position + 1) as LinearLayout).getChildAt(1).setBackgroundColor(Color.WHITE)
-                                (parent.getChildAt(position - 1) as LinearLayout).getChildAt(1).setBackgroundColor(Color.WHITE)
+                                (parentListView.getChildAt(position + 1) as LinearLayout).getChildAt(1).setBackgroundColor(Color.WHITE)
+                                (parentListView.getChildAt(position - 1) as LinearLayout).getChildAt(1).setBackgroundColor(Color.WHITE)
                             } else if (position - START_POS > 0) {
-                                    (parent.getChildAt(position + 1) as LinearLayout).getChildAt(1).setBackgroundColor(Color.WHITE)
+                                (parentListView.getChildAt(position + 1) as LinearLayout).getChildAt(1).setBackgroundColor(Color.WHITE)
                             } else if (position - START_POS < 0) {
-                                (parent.getChildAt(position - 1) as LinearLayout).getChildAt(1).setBackgroundColor(Color.WHITE)
+                                (parentListView.getChildAt(position - 1) as LinearLayout).getChildAt(1).setBackgroundColor(Color.WHITE)
                             }
                         }
                     } else {
