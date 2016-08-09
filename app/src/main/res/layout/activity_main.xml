@@ -6,10 +6,110 @@
     android:orientation="vertical"
     tools:context="com.seventhourdev.quickcalendar.MainActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="fill_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:id="@+id/toolbar"
+        android:layout_gravity="center_horizontal"
+        android:elevation="2dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp"
+        android:elevation="2dp">
+
+        <Button
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:text="1"
+            android:id="@+id/button"
+            android:background="@drawable/circle_background_white_transparent"
+            android:textColor="#fff"
+            android:typeface="monospace"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp" />
+
+        <Button
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:text="2"
+            android:id="@+id/button2"
+            android:background="@drawable/circle_background_white_transparent"
+            android:textColor="#fff"
+            android:typeface="monospace"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp" />
+
+        <Button
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:text="3"
+            android:id="@+id/button3"
+            android:background="@drawable/circle_background_white_transparent"
+            android:textColor="#fff"
+            android:typeface="monospace"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp" />
+
+        <Button
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:text="4"
+            android:id="@+id/button4"
+            android:background="@drawable/circle_background_white_transparent"
+            android:textColor="#fff"
+            android:typeface="monospace"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp" />
+
+        <Button
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:text="5"
+            android:id="@+id/button5"
+            android:background="@drawable/circle_background_white_transparent"
+            android:textColor="#fff"
+            android:typeface="monospace"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp" />
+
+        <Button
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:text="6"
+            android:id="@+id/button6"
+            android:background="@drawable/circle_background_white_transparent"
+            android:textColor="#fff"
+            android:typeface="monospace"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp" />
+
+        <Button
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:text="7"
+            android:id="@+id/button7"
+            android:background="@drawable/circle_background_white_transparent"
+            android:textColor="#fff"
+            android:typeface="monospace"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp" />
+    </LinearLayout>
+
     <ListView
         android:layout_width="match_parent"
+        android:overScrollMode="never"
         android:layout_height="fill_parent"
         android:id="@+id/listView"
+        tools:listitem="@layout/list_item_calendar"
         android:dividerHeight="0dp"
         android:divider="@null" />
 </LinearLayout>
