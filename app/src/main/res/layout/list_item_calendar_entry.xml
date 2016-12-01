@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:parentTag="RelativeLayout">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calendar Entry Name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_marginBottom="@dimen/small_margin"/>
+    <TextView
+        android:id="@+id/time"
+        android:layout_below="@id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:layout_marginBottom="@dimen/small_margin"
+        android:drawableLeft="@drawable/ic_event_white_18dp"
+        android:drawableTint="@color/colorPrimary"
+        android:gravity="center"
+        android:drawablePadding="@dimen/small_margin"
+        tools:text="Start Time - End Time"/>
+    <TextView
+        android:id="@+id/location"
+        android:layout_below="@id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:layout_marginBottom="@dimen/small_margin"
+        android:drawableLeft="@drawable/ic_event_white_18dp"
+        android:drawableTint="@color/colorPrimary"
+        android:gravity="center"
+        android:drawablePadding="@dimen/small_margin"
+        tools:text="Location"/>
+</merge>

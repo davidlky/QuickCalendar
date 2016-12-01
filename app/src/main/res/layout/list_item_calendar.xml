@@ -18,8 +18,8 @@
         android:paddingBottom="8dp" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/event"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
@@ -27,4 +27,9 @@
         android:paddingBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp" />
+
+    <com.seventhourdev.quickcalendar.widgets.CalendarListItem
+        android:layout_width="match_parent"
+        android:padding="@dimen/normal_margin"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
